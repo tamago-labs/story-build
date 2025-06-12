@@ -13,35 +13,9 @@ Traditional IP registration and licensing involves expensive legal processes, co
 
 **Model Context Protocol (MCP)** revolutionizes this by enabling natural language interaction with complex IP operations. Story.build leverages MCP to make IP protection and monetization as simple as having a conversation, while maintaining professional-grade legal frameworks through Story Protocol's programmable IP licensing system.
 
-**Story.build** is a toolkit that acts as an interface between AI and **Story Protocol**, enabling the creation of a transparent IP value chain where creators get paid every time their work is built upon:
-
-### **🎨 1. Original IP Creation**
-```
-Register artwork → Attach license terms → Ready for licensing
-```
-
-### **🎫 2. License Token Purchase (for Derivatives)**
-```
-Want to create remix → Buy license token → Pay licensing fee → Get permission
-```
-
-### **🔗 3. Derivative Work Creation**
-```
-Register remix as derivative → Link to original → Automatic royalty sharing
-```
-
-### **💰 4. Revenue Flow**
-```
-Derivative earns money → Original creator gets royalty → Claim revenue
-```
-
-**Example:** Artist registers song → Someone buys license for $100 + 10% royalty → Creates remix → Original artist automatically gets 10% of remix earnings!
-
-Please note that the project is under development. Check out the video demo to see the current progress or refer to the following section for more details.
-
 ## Key Features
 
-We have 15+ MCP tools allow you to use AI for wallet operations, check balances, wrap and unwrap IP tokens, and manage IP projects as follows:
+We have 20+ MCP tools allow you to use AI for wallet operations, check balances, wrap and unwrap IP tokens, and manage IP projects as follows:
 
 ### **IP Asset Management**
 - **IP asset registration** from URLs and metadata with automatic content parsing
@@ -51,11 +25,10 @@ We have 15+ MCP tools allow you to use AI for wallet operations, check balances,
 ### **License Management**
 - **License term creation** that lets AI write it for you
 - **License term attachment** to IP assets for monetization
-- **License token minting** for direct sales and derivative permissions
+- **License token minting** allows anyone to buy license tokens for benefits
 
 ### 🏗️ **AI-Powered App Generation**
 - **Complete showcase platforms** - Let AI generate complete Next.js applications from your IP asset data
-- **Revenue analytics dashboards** That have revenue analytics dashboards tailored for creators
 - **One-click deployment** to Vercel, Netlify, or custom hosting
 
 ## Using with Claude Desktop
