@@ -26,7 +26,12 @@
     "build": "tsup",
     "prepare": "npm run build",
     "test": "jest",
-    "dev": "ts-node src/index.ts"
+    "dev": "ts-node src/index.ts", 
+    "setup:wallet": "ts-node scripts/setup-wallet.ts",
+    "wallet:generate": "ts-node scripts/generate-wallet.ts",
+    "wallet:check": "ts-node scripts/check-wallet.ts",
+    "wallet:table": "ts-node scripts/check-wallet.ts table",
+    "wallet:mainnet": "ts-node scripts/setup-wallet.ts mainnet"
   },
   "repository": {
     "type": "git",
