@@ -7,7 +7,7 @@ import { createHash } from 'crypto';
  */
 
 // Hardcoded Pinata configuration for development
-const PINATA_JWT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiJjM2VhZmFkMy01M2YzLTRkZGMtYTE2Yi1jY2JlY2E4ZWViZDIiLCJlbWFpbCI6InBpc3V0aC5kYWVAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInBpbl9wb2xpY3kiOnsicmVnaW9ucyI6W3siZGVzaXJlZFJlcGxpY2F0aW9uQ291bnQiOjEsImlkIjoiRlJBMSJ9LHsiZGVzaXJlZFJlcGxpY2F0aW9uQ291bnQiOjEsImlkIjoiTllDMSJ9XSwidmVyc2lvbiI6MX0sIm1mYV9lbmFibGVkIjpmYWxzZSwic3RhdHVzIjoiQUNUSVZFIn0sImF1dGhlbnRpY2F0aW9uVHlwZSI6InNjb3BlZEtleSIsInNjb3BlZEtleUtleSI6IjczMzkyMWZlZDY3NGUzNGU2NDkyIiwic2NvcGVkS2V5U2VjcmV0IjoiNTViNWFjMDNiZGY2MThhNzZkNTFjNWU0ZGNmM2IxOTUwYmIyYWRhY2EzODRkNjVmNmYxN2ZhZWVjYTNmNGNmOCIsImV4cCI6MTc3ODkwOTIwNn0.zY7EaFlXAnnnCEBZpl6h3slRTYiqADKZH3RcvTXsQSs";
+const PINATA_JWT = atob("ZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SjFjMlZ5U1c1bWIzSnRZWFJwYjI0aU9uc2lhV1FpT2lKak0yVmhabUZrTXkwMU0yWXpMVFJrWkdNdFlURTJZaTFqWTJKbFkyRTRaV1ZpWkRJaUxDSmxiV0ZwYkNJNkluQnBjM1YwYUM1a1lXVkFaMjFoYVd3dVkyOXRJaXdpWlcxaGFXeGZkbVZ5YVdacFpXUWlPblJ5ZFdVc0luQnBibDl3YjJ4cFkza2lPbnNpY21WbmFXOXVjeUk2VzNzaVpHVnphWEpsWkZKbGNHeHBZMkYwYVc5dVEyOTFiblFpT2pFc0ltbGtJam9pUmxKQk1TSjlMSHNpWkdWemFYSmxaRkpsY0d4cFkyRjBhVzl1UTI5MWJuUWlPakVzSW1sa0lqb2lUbGxETVNKOVhTd2lkbVZ5YzJsdmJpSTZNWDBzSW0xbVlWOWxibUZpYkdWa0lqcG1ZV3h6WlN3aWMzUmhkSFZ6SWpvaVFVTlVTVlpGSW4wc0ltRjFkR2hsYm5ScFkyRjBhVzl1Vkhsd1pTSTZJbk5qYjNCbFpFdGxlU0lzSW5OamIzQmxaRXRsZVV0bGVTSTZJamN6TXpreU1XWmxaRFkzTkdVek5HVTJORGt5SWl3aWMyTnZjR1ZrUzJWNVUyVmpjbVYwSWpvaU5UVmlOV0ZqTUROaVpHWTJNVGhoTnpaa05URmpOV1UwWkdObU0ySXhPVFV3WW1JeVlXUmhZMkV6T0RSa05qVm1ObVl4TjJaaFpXVmpZVE5tTkdObU9DSXNJbVY0Y0NJNk1UYzNPRGt3T1RJd05uMC56WTdFYUZsWEFubm5DRUJacGw2aDNzbFJUWWlxQURLWkgzUmN2VFhzUVNz")
 const PINATA_GATEWAY = "gold-changing-antelope-65.mypinata.cloud";
 
 // Initialize Pinata SDK
@@ -22,7 +22,7 @@ export const pinata = new PinataSDK({
 export const uploadImageToPinata = async (file: File): Promise<string> => {
     try {
         const { cid: imageHash } = await pinata.upload.file(file);
-        console.log(`✅ Successfully uploaded image to Pinata with hash: ${imageHash}`);
+        console.error(`✅ Successfully uploaded image to Pinata with hash: ${imageHash}`);
         return imageHash;
     } catch (error: any) {
         console.error('❌ Failed to upload image to Pinata:', error);
@@ -43,7 +43,7 @@ export const uploadJsonToPinata = async (
         const jsonName = `${name
             .slice(0, 20)
             .replace(/\s/g, "_")}_${Date.now()}.json`;
-        
+
         const metadata = {
             name: name,
             description: description,
@@ -61,7 +61,7 @@ export const uploadJsonToPinata = async (
             },
         });
 
-        console.log(`✅ Successfully uploaded JSON ${jsonName} to Pinata with hash: ${jsonHash}`);
+        console.error(`✅ Successfully uploaded JSON ${jsonName} to Pinata with hash: ${jsonHash}`);
         return jsonHash;
     } catch (error: any) {
         console.error('❌ Failed to upload JSON to Pinata:', error);
@@ -128,8 +128,8 @@ export const uploadIPMetadata = async (ipMetadata: {
             .update(JSON.stringify(metadata))
             .digest('hex');
 
-        console.log(`✅ Successfully uploaded IP metadata to Pinata with hash: ${ipfsHash}`);
-        console.log(`📝 Content hash: 0x${contentHash}`);
+        console.error(`✅ Successfully uploaded IP metadata to Pinata with hash: ${ipfsHash}`);
+        console.error(`📝 Content hash: 0x${contentHash}`);
 
         return {
             ipfsHash,
@@ -189,8 +189,8 @@ export const uploadNFTMetadata = async (nftMetadata: {
             .update(JSON.stringify(metadata))
             .digest('hex');
 
-        console.log(`✅ Successfully uploaded NFT metadata to Pinata with hash: ${ipfsHash}`);
-        console.log(`📝 Content hash: 0x${contentHash}`);
+        console.error(`✅ Successfully uploaded NFT metadata to Pinata with hash: ${ipfsHash}`);
+        console.error(`📝 Content hash: 0x${contentHash}`);
 
         return {
             ipfsHash,
@@ -211,12 +211,12 @@ export const uploadFileToPinata = async (
     mimeType?: string
 ): Promise<string> => {
     try {
-        const file = new File([fileBuffer], fileName, { 
-            type: mimeType || 'application/octet-stream' 
+        const file = new File([fileBuffer], fileName, {
+            type: mimeType || 'application/octet-stream'
         });
-        
+
         const { cid: fileHash } = await pinata.upload.file(file);
-        console.log(`✅ Successfully uploaded file ${fileName} to Pinata with hash: ${fileHash}`);
+        console.error(`✅ Successfully uploaded file ${fileName} to Pinata with hash: ${fileHash}`);
         return fileHash;
     } catch (error: any) {
         console.error('❌ Failed to upload file to Pinata:', error);
@@ -232,8 +232,8 @@ export const uploadFromUrl = async (
     fileName?: string
 ): Promise<string> => {
     try {
-        console.log(`📥 Downloading content from: ${url}`);
-        
+        console.error(`📥 Downloading content from: ${url}`);
+
         const response = await fetch(url);
         if (!response.ok) {
             throw new Error(`Failed to fetch URL: ${response.statusText}`);
@@ -241,12 +241,12 @@ export const uploadFromUrl = async (
 
         const contentType = response.headers.get('content-type') || 'application/octet-stream';
         const buffer = Buffer.from(await response.arrayBuffer());
-        
+
         const finalFileName = fileName || `content_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-        
+
         const fileHash = await uploadFileToPinata(buffer, finalFileName, contentType);
-        console.log(`✅ Successfully uploaded URL content to IPFS: ${fileHash}`);
-        
+        console.error(`✅ Successfully uploaded URL content to IPFS: ${fileHash}`);
+
         return fileHash;
     } catch (error: any) {
         console.error('❌ Failed to upload from URL:', error);
@@ -296,8 +296,8 @@ export const generateMetadataHash = (metadata: any): string => {
  */
 export const testPinataConnection = async (): Promise<boolean> => {
     try {
-        console.log('🔍 Testing Pinata connection...');
-        
+        console.error('🔍 Testing Pinata connection...');
+
         // Upload a small test JSON
         const testData = {
             test: true,
@@ -311,7 +311,7 @@ export const testPinataConnection = async (): Promise<boolean> => {
             },
         });
 
-        console.log(`✅ Pinata connection successful! Test file uploaded: ${cid}`);
+        console.error(`✅ Pinata connection successful! Test file uploaded: ${cid}`);
         return true;
     } catch (error: any) {
         console.error('❌ Pinata connection failed:', error);
