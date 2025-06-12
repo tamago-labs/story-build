@@ -8,12 +8,15 @@ import { CheckAllowanceTool } from "./wallet/check_allowance_tool";
 import { GetTokenInfoTool } from "./wallet/get_token_info_tool";
 import { GetTransactionHistoryTool } from "./wallet/get_transaction_history_tool";
 import { ValidateAddressTool } from "./wallet/validate_address_tool";
+import { WrapIPTool } from "./wallet/wrap_ip_tool";
+import { UnwrapWIPTool } from "./wallet/unwrap_wip_tool";
 
-// TODO: IP & License Tools (to be implemented in Phase 1)
-// import { RegisterIPTool } from "./ip/register_ip_tool";
-// import { GetIPInfoTool } from "./ip/get_ip_info_tool";
-// import { AttachLicenseTool } from "./license/attach_license_tool";
-// import { MintLicenseTool } from "./license/mint_license_tool";
+// IP & License Tools (Phase 1)
+import { RegisterIPTool } from "./ip/register_ip_tool";
+import { GetIPInfoTool } from "./ip/get_ip_info_tool";
+import { CreateLicenseTermsTool } from "./license/create_license_terms_tool";
+import { AttachLicenseTool } from "./license/attach_license_tool";
+import { MintLicenseTool } from "./license/mint_license_tool";
 
 // TODO: Derivative & Revenue Tools (to be implemented in Phase 2)
 // import { RegisterDerivativeTool } from "./derivative/register_derivative_tool";
@@ -39,24 +42,28 @@ export const StoryMcpTools = {
     "ApproveTokenTool": ApproveTokenTool,                      // Approve tokens for Story Protocol contracts
     "CheckAllowanceTool": CheckAllowanceTool,                  // Check token allowances for contracts
     "GetTokenInfoTool": GetTokenInfoTool,                      // Get comprehensive ERC20 token information
+    
+    // Story Protocol token operations
+    "WrapIPTool": WrapIPTool,                                  // Wrap IP tokens to WIP (like WETH)
+    "UnwrapWIPTool": UnwrapWIPTool,                            // Unwrap WIP tokens back to IP
 
     // ========================================
-    // PHASE 1: CORE IP OPERATIONS (🚧 TO DO)
+    // PHASE 1: CORE IP OPERATIONS (✅ COMPLETE)
     // ========================================
     
     // IP Registration & Management
-    // "RegisterIPTool": RegisterIPTool,                       // Register IP from URLs or metadata
+    "RegisterIPTool": RegisterIPTool,                       // ✅ Register IP from URLs or metadata
+    "GetIPInfoTool": GetIPInfoTool,                         // ✅ Get IP asset details and metadata
     // "MintAndRegisterIPTool": MintAndRegisterIPTool,         // Mint NFT + register IP in one tx
-    // "GetIPInfoTool": GetIPInfoTool,                         // Get IP asset details and metadata
     // "BatchRegisterTool": BatchRegisterTool,                 // Register multiple IP assets
     
     // License Terms & Management  
-    // "CreateLicenseTermsTool": CreateLicenseTermsTool,       // AI-powered license term creation
-    // "AttachLicenseTool": AttachLicenseTool,                 // Attach license terms to IP
+    "CreateLicenseTermsTool": CreateLicenseTermsTool,       // ✅ AI-powered license term creation
+    "AttachLicenseTool": AttachLicenseTool,                 // ✅ Attach license terms to IP
     // "GetLicenseTermsTool": GetLicenseTermsTool,             // View available license terms
     
     // License Token Operations
-    // "MintLicenseTool": MintLicenseTool,                     // Mint license tokens for purchase
+    "MintLicenseTool": MintLicenseTool,                     // ✅ Mint license tokens for purchase
     // "BuyLicenseTool": BuyLicenseTool,                       // Purchase license token for derivatives
     // "TransferLicenseTool": TransferLicenseTool,             // Transfer license tokens
 
@@ -123,18 +130,18 @@ export const getToolsByPhase = (phase: 'wallet' | 'core' | 'advanced' | 'platfor
 
 // Get count of implemented tools
 export const getImplementationStatus = () => {
-    const allTools = Object.keys(StoryMcpTools);
-    const implementedTools = allTools.filter(toolName => StoryMcpTools[toolName as keyof typeof StoryMcpTools]);
-    
-    return {
-        total_defined: allTools.length,
-        implemented: implementedTools.length,
-        completion_percentage: Math.round((implementedTools.length / allTools.length) * 100),
-        phases: {
-            wallet: getToolsByPhase('wallet').length,
-            core: getToolsByPhase('core').length,
-            advanced: getToolsByPhase('advanced').length,
-            platform: getToolsByPhase('platform').length
-        }
-    };
+const allTools = Object.keys(StoryMcpTools);
+const implementedTools = allTools.filter(toolName => StoryMcpTools[toolName as keyof typeof StoryMcpTools]);
+
+return {
+total_defined: allTools.length,
+implemented: implementedTools.length,
+completion_percentage: Math.round((implementedTools.length / allTools.length) * 100),
+phases: {
+wallet: getToolsByPhase('wallet').length,
+core: getToolsByPhase('core').length,
+advanced: getToolsByPhase('advanced').length,
+platform: getToolsByPhase('platform').length
+}
+};
 };
