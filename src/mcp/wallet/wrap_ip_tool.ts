@@ -41,7 +41,7 @@ export const WrapIPTool: McpTool = {
                     
                     console.error(`✅ Sufficient IP balance: ${ipBalanceFormatted} IP`);
                 } catch (error) {
-                    console.warn(`⚠️ Could not verify IP balance: ${error}`);
+                    console.error(`⚠️ Could not verify IP balance: ${error}`);
                 }
             }
 
@@ -74,7 +74,7 @@ export const WrapIPTool: McpTool = {
                 });
                 newWIPBalance = formatEther(wipBalance);
             } catch (error) {
-                console.warn(`⚠️ Could not fetch updated balances: ${error}`);
+                console.error(`⚠️ Could not fetch updated balances: ${error}`);
             }
 
             console.error(`✅ Successfully wrapped ${amount} IP to WIP!`);

@@ -52,7 +52,7 @@ export const UnwrapWIPTool: McpTool = {
 
                     console.error(`✅ Sufficient WIP balance: ${wipBalanceFormatted} WIP`);
                 } catch (error) {
-                    console.warn(`⚠️ Could not verify WIP balance: ${error}`);
+                    console.error(`⚠️ Could not verify WIP balance: ${error}`);
                 }
             }
 
@@ -73,7 +73,7 @@ export const UnwrapWIPTool: McpTool = {
                 });
                 newIPBalance = formatEther(ipBalance);
             } catch (error) {
-                console.warn(`⚠️ Could not fetch updated balances: ${error}`);
+                console.error(`⚠️ Could not fetch updated balances: ${error}`);
             }
 
             console.error(`✅ Successfully unwrapped ${amount} WIP to IP!`);
