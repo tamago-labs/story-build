@@ -26,7 +26,7 @@ interface ParsedContent {
  */
 export const parseInstagramUrl = async (url: string): Promise<ParsedContent> => {
     try {
-        console.log(`📸 Parsing Instagram URL: ${url}`);
+        console.error(`📸 Parsing Instagram URL: ${url}`);
 
         // Extract post ID from URL
         const match = url.match(/\/p\/([A-Za-z0-9_-]+)/);
@@ -58,7 +58,7 @@ export const parseInstagramUrl = async (url: string): Promise<ParsedContent> => 
  */
 export const parseTwitterUrl = async (url: string): Promise<ParsedContent> => {
     try {
-        console.log(`🐦 Parsing Twitter URL: ${url}`);
+        console.error(`🐦 Parsing Twitter URL: ${url}`);
 
         // Extract username and tweet ID
         const match = url.match(/\/([^\/]+)\/status\/(\d+)/);
@@ -91,7 +91,7 @@ export const parseTwitterUrl = async (url: string): Promise<ParsedContent> => {
  */
 export const parseArtStationUrl = async (url: string): Promise<ParsedContent> => {
     try {
-        console.log(`🎨 Parsing ArtStation URL: ${url}`);
+        console.error(`🎨 Parsing ArtStation URL: ${url}`);
 
         // Extract artwork info from URL
         const match = url.match(/artstation\.com\/artwork\/([A-Za-z0-9]+)/);
@@ -124,7 +124,7 @@ export const parseArtStationUrl = async (url: string): Promise<ParsedContent> =>
  */
 export const parseBehanceUrl = async (url: string): Promise<ParsedContent> => {
     try {
-        console.log(`💼 Parsing Behance URL: ${url}`);
+        console.error(`💼 Parsing Behance URL: ${url}`);
 
         // Extract project info from URL
         const match = url.match(/behance\.net\/gallery\/([0-9]+)\/([^?]+)/);
@@ -156,7 +156,7 @@ export const parseBehanceUrl = async (url: string): Promise<ParsedContent> => {
  */
 export const parseYouTubeUrl = async (url: string): Promise<ParsedContent> => {
     try {
-        console.log(`📺 Parsing YouTube URL: ${url}`);
+        console.error(`📺 Parsing YouTube URL: ${url}`);
 
         // Extract video ID from various YouTube URL formats
         let videoId = '';
@@ -198,7 +198,7 @@ export const parseYouTubeUrl = async (url: string): Promise<ParsedContent> => {
  */
 export const parseImageUrl = async (url: string): Promise<ParsedContent> => {
     try {
-        console.log(`🖼️ Parsing image URL: ${url}`);
+        console.error(`🖼️ Parsing image URL: ${url}`);
 
         // Check if it's actually an image
         const response = await axios.head(url);
@@ -234,7 +234,7 @@ export const parseImageUrl = async (url: string): Promise<ParsedContent> => {
  */
 export const parseContentUrl = async (url: string): Promise<ParsedContent> => {
     try {
-        console.log(`🔍 Auto-detecting URL type: ${url}`);
+        console.error(`🔍 Auto-detecting URL type: ${url}`);
 
         if (url.includes('instagram.com')) {
             return await parseInstagramUrl(url);
@@ -277,7 +277,7 @@ export const generateIPMetadataFromContent = async (
     };
 }> => {
     try {
-        console.log(`📝 Generating metadata for: ${content.title}`);
+        console.error(`📝 Generating metadata for: ${content.title}`);
 
         // Upload media to IPFS
         let imageHash: string | undefined;
@@ -287,7 +287,7 @@ export const generateIPMetadataFromContent = async (
             try {
                 imageHash = await uploadFromUrl(content.imageUrl, `image_${Date.now()}`);
             } catch (error) {
-                console.warn(`⚠️ Failed to upload image: ${error}`);
+                console.error(`⚠️ Failed to upload image: ${error}`);
             }
         }
 
@@ -295,7 +295,7 @@ export const generateIPMetadataFromContent = async (
             try {
                 mediaHash = await uploadFromUrl(content.mediaUrl, `media_${Date.now()}`);
             } catch (error) {
-                console.warn(`⚠️ Failed to upload media: ${error}`);
+                console.error(`⚠️ Failed to upload media: ${error}`);
             }
         }
 

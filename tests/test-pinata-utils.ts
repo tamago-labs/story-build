@@ -39,11 +39,10 @@ async function testPinataUtils() {
                 console.log(`   ⚠️ ${url}: ${error.message.slice(0, 50)}...`);
             }
         }
-        console.log('');
 
         // Test 3: Image URL Parsing
         console.log('🖼️ Test 3: Image URL Parsing');
-        const imageUrl = 'https://picsum.photos/800/600'; // Random image for testing
+        const imageUrl = 'https://images.unsplash.com/photo-1541961017774-22349e4a1262'; // Random image for testing
         
         try {
             console.log('   Testing image URL parsing...');

@@ -7,13 +7,13 @@ import { createHash } from 'crypto';
  */
 
 // Hardcoded Pinata configuration for development
-const PINATA_JWT = atob("ZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SjFjMlZ5U1c1bWIzSnRZWFJwYjI0aU9uc2lhV1FpT2lKak0yVmhabUZrTXkwMU0yWXpMVFJrWkdNdFlURTJZaTFqWTJKbFkyRTRaV1ZpWkRJaUxDSmxiV0ZwYkNJNkluQnBjM1YwYUM1a1lXVkFaMjFoYVd3dVkyOXRJaXdpWlcxaGFXeGZkbVZ5YVdacFpXUWlPblJ5ZFdVc0luQnBibDl3YjJ4cFkza2lPbnNpY21WbmFXOXVjeUk2VzNzaVpHVnphWEpsWkZKbGNHeHBZMkYwYVc5dVEyOTFiblFpT2pFc0ltbGtJam9pUmxKQk1TSjlMSHNpWkdWemFYSmxaRkpsY0d4cFkyRjBhVzl1UTI5MWJuUWlPakVzSW1sa0lqb2lUbGxETVNKOVhTd2lkbVZ5YzJsdmJpSTZNWDBzSW0xbVlWOWxibUZpYkdWa0lqcG1ZV3h6WlN3aWMzUmhkSFZ6SWpvaVFVTlVTVlpGSW4wc0ltRjFkR2hsYm5ScFkyRjBhVzl1Vkhsd1pTSTZJbk5qYjNCbFpFdGxlU0lzSW5OamIzQmxaRXRsZVV0bGVTSTZJamN6TXpreU1XWmxaRFkzTkdVek5HVTJORGt5SWl3aWMyTnZjR1ZrUzJWNVUyVmpjbVYwSWpvaU5UVmlOV0ZqTUROaVpHWTJNVGhoTnpaa05URmpOV1UwWkdObU0ySXhPVFV3WW1JeVlXUmhZMkV6T0RSa05qVm1ObVl4TjJaaFpXVmpZVE5tTkdObU9DSXNJbVY0Y0NJNk1UYzNPRGt3T1RJd05uMC56WTdFYUZsWEFubm5DRUJacGw2aDNzbFJUWWlxQURLWkgzUmN2VFhzUVNz")
+const PINATA_JWT = atob("ZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SjFjMlZ5U1c1bWIzSnRZWFJwYjI0aU9uc2lhV1FpT2lKak0yVmhabUZrTXkwMU0yWXpMVFJrWkdNdFlURTJZaTFqWTJKbFkyRTRaV1ZpWkRJaUxDSmxiV0ZwYkNJNkluQnBjM1YwYUM1a1lXVkFaMjFoYVd3dVkyOXRJaXdpWlcxaGFXeGZkbVZ5YVdacFpXUWlPblJ5ZFdVc0luQnBibDl3YjJ4cFkza2lPbnNpY21WbmFXOXVjeUk2VzNzaVpHVnphWEpsWkZKbGNHeHBZMkYwYVc5dVEyOTFiblFpT2pFc0ltbGtJam9pUmxKQk1TSjlMSHNpWkdWemFYSmxaRkpsY0d4cFkyRjBhVzl1UTI5MWJuUWlPakVzSW1sa0lqb2lUbGxETVNKOVhTd2lkbVZ5YzJsdmJpSTZNWDBzSW0xbVlWOWxibUZpYkdWa0lqcG1ZV3h6WlN3aWMzUmhkSFZ6SWpvaVFVTlVTVlpGSW4wc0ltRjFkR2hsYm5ScFkyRjBhVzl1Vkhsd1pTSTZJbk5qYjNCbFpFdGxlU0lzSW5OamIzQmxaRXRsZVV0bGVTSTZJalpqTUdKbFpXTTNORGMzTURBME56a3lNR0U0SWl3aWMyTnZjR1ZrUzJWNVUyVmpjbVYwSWpvaU9EQXpaRGsyTWpJeFpqUTJNVGN4WlRJeU5UVXhORFkwWTJSbFlqbG1aR1F5WkdWbE16RmpNREkzTURGa09ERTRaV013WkdNellUa3pPRFJrTXpneVlpSXNJbVY0Y0NJNk1UYzRNVEkxTlRJd05YMC44ME1OZ1ZKM2lvcHJtSHBtV1B4TExMa281bWR2RnI4VTd6ZE12bmo5UGRz")
 const PINATA_GATEWAY = "gold-changing-antelope-65.mypinata.cloud";
 
 // Initialize Pinata SDK
 export const pinata = new PinataSDK({
-    pinataJwt: process.env.PINATA_JWT || PINATA_JWT,
-    pinataGateway: process.env.PINATA_GATEWAY_URL || PINATA_GATEWAY,
+    pinataJwt: PINATA_JWT,
+    pinataGateway: PINATA_GATEWAY,
 });
 
 /**
@@ -21,7 +21,7 @@ export const pinata = new PinataSDK({
  */
 export const uploadImageToPinata = async (file: File): Promise<string> => {
     try {
-        const { cid: imageHash } = await pinata.upload.file(file);
+        const { cid: imageHash } = await pinata.upload.public.file(file);
         console.error(`✅ Successfully uploaded image to Pinata with hash: ${imageHash}`);
         return imageHash;
     } catch (error: any) {
@@ -55,7 +55,7 @@ export const uploadJsonToPinata = async (
             version: "1.0"
         };
 
-        const { cid: jsonHash } = await pinata.upload.json(metadata, {
+        const { cid: jsonHash } = await pinata.upload.public.json(metadata, {
             metadata: {
                 name: jsonName,
             },
@@ -112,7 +112,7 @@ export const uploadIPMetadata = async (ipMetadata: {
             .slice(0, 20)
             .replace(/\s/g, "_")}_${Date.now()}.json`;
 
-        const { cid: ipfsHash } = await pinata.upload.json(metadata, {
+        const { cid: ipfsHash } = await pinata.upload.public.json(metadata, {
             metadata: {
                 name: fileName,
                 keyvalues: {
@@ -173,7 +173,7 @@ export const uploadNFTMetadata = async (nftMetadata: {
             .slice(0, 20)
             .replace(/\s/g, "_")}_${Date.now()}.json`;
 
-        const { cid: ipfsHash } = await pinata.upload.json(metadata, {
+        const { cid: ipfsHash } = await pinata.upload.public.json(metadata, {
             metadata: {
                 name: fileName,
                 keyvalues: {
@@ -215,7 +215,7 @@ export const uploadFileToPinata = async (
             type: mimeType || 'application/octet-stream'
         });
 
-        const { cid: fileHash } = await pinata.upload.file(file);
+        const { cid: fileHash } = await pinata.upload.public.file(file);
         console.error(`✅ Successfully uploaded file ${fileName} to Pinata with hash: ${fileHash}`);
         return fileHash;
     } catch (error: any) {
@@ -305,7 +305,7 @@ export const testPinataConnection = async (): Promise<boolean> => {
             message: "Story Protocol Pinata connection test"
         };
 
-        const { cid } = await pinata.upload.json(testData, {
+        const { cid } = await pinata.upload.public.json(testData, {
             metadata: {
                 name: `story_test_${Date.now()}.json`,
             },
