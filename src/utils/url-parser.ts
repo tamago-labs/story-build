@@ -270,8 +270,8 @@ export const generateIPMetadataFromContent = async (
     ipMetadata: any;
     nftMetadata: any;
     ipfsHashes: {
-        imageHash?: string;
-        mediaHash?: string;
+        // imageHash?: string;
+        // mediaHash?: string;
         ipMetadataHash: string;
         nftMetadataHash: string;
     };
@@ -280,24 +280,24 @@ export const generateIPMetadataFromContent = async (
         console.error(`📝 Generating metadata for: ${content.title}`);
 
         // Upload media to IPFS
-        let imageHash: string | undefined;
-        let mediaHash: string | undefined;
+        // let imageHash: string | undefined;
+        // let mediaHash: string | undefined;
 
-        if (content.imageUrl) {
-            try {
-                imageHash = await uploadFromUrl(content.imageUrl, `image_${Date.now()}`);
-            } catch (error) {
-                console.error(`⚠️ Failed to upload image: ${error}`);
-            }
-        }
+        // if (content.imageUrl) {
+        //     try {
+        //         imageHash = await uploadFromUrl(content.imageUrl, `image_${Date.now()}`);
+        //     } catch (error) {
+        //         console.error(`⚠️ Failed to upload image: ${error}`);
+        //     }
+        // }
 
-        if (content.mediaUrl && content.mediaUrl !== content.imageUrl) {
-            try {
-                mediaHash = await uploadFromUrl(content.mediaUrl, `media_${Date.now()}`);
-            } catch (error) {
-                console.error(`⚠️ Failed to upload media: ${error}`);
-            }
-        }
+        // if (content.mediaUrl && content.mediaUrl !== content.imageUrl) {
+        //     try {
+        //         mediaHash = await uploadFromUrl(content.mediaUrl, `media_${Date.now()}`);
+        //     } catch (error) {
+        //         console.error(`⚠️ Failed to upload media: ${error}`);
+        //     }
+        // }
 
         // Prepare creators array
         const creators = [
@@ -314,10 +314,10 @@ export const generateIPMetadataFromContent = async (
             title: content.title,
             description: content.description,
             creators: creators,
-            image: imageHash ? `https://ipfs.io/ipfs/${imageHash}` : undefined,
-            imageHash: imageHash,
-            mediaUrl: mediaHash ? `https://ipfs.io/ipfs/${mediaHash}` : content.mediaUrl,
-            mediaHash: mediaHash,
+            image: content.imageUrl,
+            // imageHash: imageHash,
+            mediaUrl: content.mediaUrl,
+            // mediaHash: mediaHash,
             mediaType: content.mediaType,
             attributes: content.attributes
         };
@@ -326,8 +326,8 @@ export const generateIPMetadataFromContent = async (
         const nftMetadata = {
             name: content.title,
             description: content.description,
-            image: imageHash ? `https://ipfs.io/ipfs/${imageHash}` : content.imageUrl || '',
-            animation_url: mediaHash ? `https://ipfs.io/ipfs/${mediaHash}` : content.mediaUrl,
+            image: content?.imageUrl,
+            animation_url: content?.mediaUrl,
             external_url: content.originalUrl,
             attributes: content.attributes?.map(attr => ({
                 trait_type: attr.trait_type,
@@ -342,9 +342,7 @@ export const generateIPMetadataFromContent = async (
         return {
             ipMetadata,
             nftMetadata,
-            ipfsHashes: {
-                imageHash,
-                mediaHash,
+            ipfsHashes: { 
                 ipMetadataHash,
                 nftMetadataHash
             }

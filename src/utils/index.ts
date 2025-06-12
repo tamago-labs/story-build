@@ -65,3 +65,11 @@ export interface GeneratedMetadata {
         nftMetadataHash: string;
     };
 }
+
+// License terms utilities
+export {
+    createCommercialRemixTerms,
+    createNonCommercialTerms,
+    RoyaltyPolicyLAP,
+    RoyaltyPolicyLRP
+} from './license-terms';
