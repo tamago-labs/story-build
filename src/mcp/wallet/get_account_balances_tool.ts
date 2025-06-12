@@ -6,7 +6,7 @@ import { WIP_TOKEN_ADDRESS } from "@story-protocol/core-sdk";
 
 export const GetAccountBalancesTool: McpTool = {
     name: "story_get_account_balances",
-    description: "Get all token balances including ETH, IP tokens, and license tokens",
+    description: "Get all token balances including IP, WIP tokens, and license tokens",
     schema: {
         account_address: z.string()
             .regex(/^0x[0-9a-fA-F]{40}$/)
@@ -24,7 +24,7 @@ export const GetAccountBalancesTool: McpTool = {
                 address: targetAddress
             });
 
-            // Get WIP token balance (Story Protocol's token)
+            // Get WIP token balance (Story Protocol's wrapped token)
             let wipBalance = BigInt(0);
             try {
                 wipBalance = await agent.publicClient.readContract({
@@ -43,30 +43,7 @@ export const GetAccountBalancesTool: McpTool = {
                 });
             } catch (error) {
                 console.error('Error fetching WIP balance:', error);
-            }
-
-            // Get IP token balance (for IP registration fees)
-            let ipBalance = BigInt(0);
-            try {
-                // IP token address on the network
-                const IP_TOKEN_ADDRESS = "0x1516000000000000000000000000000000000000" as Address;
-                ipBalance = await agent.publicClient.readContract({
-                    address: IP_TOKEN_ADDRESS,
-                    abi: [
-                        {
-                            name: 'balanceOf',
-                            type: 'function',
-                            stateMutability: 'view',
-                            inputs: [{ name: 'account', type: 'address' }],
-                            outputs: [{ name: '', type: 'uint256' }],
-                        }
-                    ],
-                    functionName: 'balanceOf',
-                    args: [targetAddress]
-                });
-            } catch (error) {
-                console.error('Error fetching IP balance:', error);
-            }
+            } 
 
             return {
                 status: "success",
@@ -77,7 +54,7 @@ export const GetAccountBalancesTool: McpTool = {
                     is_own_wallet: targetAddress.toLowerCase() === agent.account.address.toLowerCase()
                 },
                 native_balance: {
-                    symbol: "ETH",
+                    symbol: "IP",
                     balance: formatEther(ethBalance),
                     balance_wei: ethBalance.toString(),
                     usd_value: "N/A" // Could integrate price feeds later
@@ -90,22 +67,13 @@ export const GetAccountBalancesTool: McpTool = {
                         balance_wei: wipBalance.toString(),
                         contract_address: WIP_TOKEN_ADDRESS,
                         purpose: "Used for licensing fees and royalty payments"
-                    },
-                    ip: {
-                        symbol: "IP",
-                        name: "IP Token", 
-                        balance: formatEther(ipBalance),
-                        balance_wei: ipBalance.toString(),
-                        contract_address: "0x1516000000000000000000000000000000000000",
-                        purpose: "Native Story Protocol governance and utility token"
                     }
                 },
                 portfolio_summary: {
-                    total_eth_balance: formatEther(ethBalance),
+                    total_ip_balance: formatEther(ethBalance),
                     total_wip_balance: formatEther(wipBalance),
-                    total_ip_balance: formatEther(ipBalance),
                     can_pay_gas: Number(formatEther(ethBalance)) > 0.001,
-                    can_pay_licensing_fees: wipBalance > 0 || ipBalance > 0,
+                    can_pay_licensing_fees: wipBalance > 0,
                     ready_for_ip_operations: Number(formatEther(ethBalance)) > 0.001
                 },
                 next_steps: Number(formatEther(ethBalance)) < 0.001

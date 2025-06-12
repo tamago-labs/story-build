@@ -32,8 +32,6 @@ export const ApproveTokenTool: McpTool = {
             // Handle shortcuts
             if (input.token_address === "WIP") {
                 tokenAddress = WIP_TOKEN_ADDRESS;
-            } else if (input.token_address === "IP") {
-                tokenAddress = "0x1516000000000000000000000000000000000000" as Address;
             }
 
             const amount = input.unlimited || !input.amount 

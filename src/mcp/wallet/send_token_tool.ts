@@ -6,7 +6,7 @@ import { WIP_TOKEN_ADDRESS } from "@story-protocol/core-sdk";
 
 export const SendTokenTool: McpTool = {
     name: "story_send_token",
-    description: "Send Story Protocol tokens (WIP, IP, or custom tokens) to another address",
+    description: "Send Story Protocol tokens (WIP, or custom tokens) to another address",
     schema: {
         token_address: z.string()
             .regex(/^0x[0-9a-fA-F]{40}$/)
@@ -31,9 +31,7 @@ export const SendTokenTool: McpTool = {
             // Handle shortcuts
             if (input.token_address === "WIP") {
                 tokenAddress = WIP_TOKEN_ADDRESS;
-            } else if (input.token_address === "IP") {
-                tokenAddress = "0x1516000000000000000000000000000000000000" as Address;
-            }
+            } 
 
             const amount = parseEther(input.amount.toString());
 
@@ -137,8 +135,7 @@ export const SendTokenTool: McpTool = {
                     contract_address: tokenAddress,
                     symbol: symbol,
                     decimals: decimals,
-                    is_story_protocol_token: tokenAddress === WIP_TOKEN_ADDRESS || 
-                                           tokenAddress === "0x1516000000000000000000000000000000000000"
+                    is_story_protocol_token: tokenAddress === WIP_TOKEN_ADDRESS
                 },
                 network_info: {
                     network: agent.network,

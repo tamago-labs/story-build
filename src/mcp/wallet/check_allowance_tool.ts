@@ -30,8 +30,6 @@ export const CheckAllowanceTool: McpTool = {
             // Handle shortcuts
             if (input.token_address === "WIP") {
                 tokenAddress = WIP_TOKEN_ADDRESS;
-            } else if (input.token_address === "IP") {
-                tokenAddress = "0x1516000000000000000000000000000000000000" as Address;
             }
 
             // ERC20 ABI for allowance operations
@@ -169,8 +167,7 @@ export const CheckAllowanceTool: McpTool = {
                     allowance_vs_balance: allowance >= balance ? "sufficient" : "insufficient"
                 },
                 contract_info: {
-                    is_story_protocol_token: tokenAddress === WIP_TOKEN_ADDRESS || 
-                                           tokenAddress === "0x1516000000000000000000000000000000000000",
+                    is_story_protocol_token: tokenAddress === WIP_TOKEN_ADDRESS,
                     spender_contract: spender,
                     is_own_wallet: owner.toLowerCase() === agent.account.address.toLowerCase()
                 },

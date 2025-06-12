@@ -4,15 +4,15 @@ import { type McpTool } from "../../types";
 import { parseEther, Address } from "viem";
 
 export const SendETHTool: McpTool = {
-    name: "story_send_eth",
-    description: "Send ETH to another address for gas fees or payments",
+    name: "story_send_native_ip",
+    description: "Send native IP token to another address for gas fees or payments",
     schema: {
         destination: z.string()
             .regex(/^0x[0-9a-fA-F]{40}$/)
             .describe("Recipient's Ethereum address"),
         amount: z.number()
             .positive()
-            .describe("Amount of ETH to send"),
+            .describe("Amount of IP to send"),
         memo: z.string()
             .optional()
             .describe("Optional memo for the transaction")
@@ -30,7 +30,7 @@ export const SendETHTool: McpTool = {
             });
 
             if (balance < amount) {
-                throw new Error(`Insufficient balance. Available: ${Number(balance) / 1e18} ETH, Required: ${input.amount} ETH`);
+                throw new Error(`Insufficient balance. Available: ${Number(balance) / 1e18} IP, Required: ${input.amount} IP`);
             }
 
             // Simulate transaction first to get accurate gas estimate and catch errors
@@ -51,10 +51,10 @@ export const SendETHTool: McpTool = {
             const gasCost = gasEstimate * gasPrice;
 
             if (balance < amount + gasCost) {
-                throw new Error(`Insufficient balance for transaction + gas. Total needed: ${Number(amount + gasCost) / 1e18} ETH`);
+                throw new Error(`Insufficient balance for transaction + gas. Total needed: ${Number(amount + gasCost) / 1e18} IP`);
             }
 
-            console.error(`✅ ETH transfer simulation successful. Gas estimate: ${gasEstimate.toString()}`);
+            console.error(`✅ Native IP transfer simulation successful. Gas estimate: ${gasEstimate.toString()}`);
 
             // Send transaction
             const txHash = await agent.walletClient.sendTransaction({
@@ -72,16 +72,16 @@ export const SendETHTool: McpTool = {
 
             return {
                 status: "success",
-                message: `✅ Successfully sent ${input.amount} ETH to ${destination}`,
+                message: `✅ Successfully sent ${input.amount} IP to ${destination}`,
                 transaction_details: {
                     transaction_hash: txHash,
                     from: agent.account.address,
                     to: destination,
-                    amount: `${input.amount} ETH`,
+                    amount: `${input.amount} IP`,
                     amount_wei: amount.toString(),
                     gas_used: receipt.gasUsed.toString(),
                     gas_price: gasPrice.toString(),
-                    total_cost: `${Number(amount + (receipt.gasUsed * gasPrice)) / 1e18} ETH`,
+                    total_cost: `${Number(amount + (receipt.gasUsed * gasPrice)) / 1e18} IP`,
                     block_number: receipt.blockNumber.toString(),
                     confirmations: 1,
                     memo: input.memo || "N/A"
@@ -93,11 +93,11 @@ export const SendETHTool: McpTool = {
                 next_steps: [
                     "✅ Transaction confirmed on blockchain",
                     "🔍 View transaction details on block explorer",
-                    "💰 Recipient can now use ETH for Story Protocol operations"
+                    "💰 Recipient can now use IP for Story Protocol operations"
                 ]
             };
         } catch (error: any) {
-            throw new Error(`Failed to send ETH: ${error.message}`);
+            throw new Error(`Failed to send IP: ${error.message}`);
         } finally {
             await agent.disconnect();
         }

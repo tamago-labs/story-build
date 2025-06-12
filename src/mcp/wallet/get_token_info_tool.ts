@@ -26,8 +26,6 @@ export const GetTokenInfoTool: McpTool = {
             // Handle shortcuts
             if (input.token_address === "WIP") {
                 tokenAddress = WIP_TOKEN_ADDRESS;
-            } else if (input.token_address === "IP") {
-                tokenAddress = "0x1516000000000000000000000000000000000000" as Address;
             }
 
             // Extended ERC20 ABI for comprehensive token info
@@ -116,15 +114,8 @@ export const GetTokenInfoTool: McpTool = {
                 if (tokenAddress === WIP_TOKEN_ADDRESS) {
                     return {
                         type: "story_protocol_token",
-                        category: "wrapped_utility",
+                        category: "wrapped_token",
                         purpose: "Used for licensing fees and royalty payments on Story Protocol",
-                        official: true
-                    };
-                } else if (tokenAddress === "0x1516000000000000000000000000000000000000") {
-                    return {
-                        type: "story_protocol_token", 
-                        category: "native_governance",
-                        purpose: "Native Story Protocol governance and utility token",
                         official: true
                     };
                 } else {
@@ -170,7 +161,7 @@ export const GetTokenInfoTool: McpTool = {
                 story_protocol_integration: {
                     is_story_token: tokenInfo.official,
                     can_use_for_licensing: tokenAddress === WIP_TOKEN_ADDRESS,
-                    can_use_for_governance: tokenAddress === "0x1516000000000000000000000000000000000000",
+                    can_use_for_governance: false,
                     purpose: tokenInfo.purpose,
                     recommended_for_ip_operations: tokenInfo.official
                 },

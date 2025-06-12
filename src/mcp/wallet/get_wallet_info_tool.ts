@@ -10,7 +10,7 @@ export const GetWalletInfoTool: McpTool = {
         try {
             await agent.connect();
 
-            const walletInfo = await agent.getWalletInfo();
+            // const walletInfo = await agent.getWalletInfo();
             const balance = await agent.publicClient.getBalance({
                 address: agent.account.address
             });
@@ -23,7 +23,7 @@ export const GetWalletInfoTool: McpTool = {
                 wallet_details: {
                     address: agent.account.address,
                     network: agent.network,
-                    balance: `${balanceInETH.toFixed(6)} ETH`,
+                    balance: `${balanceInETH.toFixed(6)} IP`,
                     balance_in_wei: balance.toString(),
                     chain_id: await agent.publicClient.getChainId(),
                     block_explorer: agent.networkInfo.blockExplorer,
@@ -31,16 +31,16 @@ export const GetWalletInfoTool: McpTool = {
                 },
                 account_status: {
                     activated: true,
-                    minimum_balance_required: "0.01 ETH",
+                    minimum_balance_required: "0.01 IP",
                     can_register_ip: balanceInETH >= 0.01,
                     ready_for_operations: balanceInETH >= 0.001
                 },
                 recommendations: balanceInETH < 0.01 
                     ? [
-                        "⚠️ Low ETH balance detected",
-                        "Fund wallet with at least 0.01 ETH for IP registration",
+                        "⚠️ Low IP balance detected",
+                        "Fund wallet with at least 0.01 IP for IP registration",
                         "Gas fees required for all Story Protocol operations",
-                        `Current balance: ${balanceInETH.toFixed(6)} ETH`
+                        `Current balance: ${balanceInETH.toFixed(6)} IP`
                     ]
                     : [
                         "✅ Wallet has sufficient balance for operations",
