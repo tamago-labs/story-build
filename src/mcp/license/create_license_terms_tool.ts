@@ -187,7 +187,7 @@ export const CreateLicenseTermsTool: McpTool = {
                 status: "success",
                 message: `✅ Successfully created license terms: ${description}`,
                 license_terms: {
-                    license_terms_id: response.licenseTermsId,
+                    license_terms_id: `${response.licenseTermsId}`,
                     description: description,
                     type: licenseType,
                     created_by: agent.account.address
