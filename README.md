@@ -13,9 +13,9 @@ Traditional IP registration and licensing involves expensive legal processes, co
 
 **Model Context Protocol (MCP)** revolutionizes this by enabling natural language interaction with complex IP operations. Story.build leverages MCP to make IP protection and monetization as simple as having a conversation, while maintaining professional-grade legal frameworks through Story Protocol's programmable IP licensing system.
 
-## Key Features
+## Current Features
 
-We have 20+ MCP tools allow you to use AI likes Claude or Cursor.ai for wallet operations, check balances, wrap and unwrap IP tokens, and perform complex IP tasks as follows:
+We have 17+ MCP tools allow you to use AI likes Claude or Cursor.ai for wallet operations, check balances, wrap and unwrap IP tokens, and perform complex IP tasks as follows:
 
 ### **IP Asset Management**
 - **IP asset registration** Simply by paste URLs with automatic content parsing
@@ -28,7 +28,7 @@ We have 20+ MCP tools allow you to use AI likes Claude or Cursor.ai for wallet o
 - **License token minting** allows anyone to buy license tokens for benefits
 
 ### 🏗️ **AI-Powered App Generation**
-- **Complete showcase platforms** - Let AI generate complete Next.js applications from your IP asset data
+- **Complete app creation** - Let AI generate complete Next.js applications for you
 - **One-click deployment** to Vercel, Netlify, or custom hosting
 
 ## Using with Claude Desktop
