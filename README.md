@@ -18,7 +18,7 @@ Traditional IP registration and licensing involves expensive legal processes, co
 We have 20+ MCP tools allow you to use AI for wallet operations, check balances, wrap and unwrap IP tokens, and manage IP projects as follows:
 
 ### **IP Asset Management**
-- **IP asset registration** from URLs and metadata with automatic content parsing
+- **IP asset registration** Simply by paste URLs with automatic content parsing
 - **Social media URL parsing** (Instagram, Twitter, ArtStation, Behance, YouTube)
 - **IPFS upload integration** for decentralized content storage via Pinata
 
