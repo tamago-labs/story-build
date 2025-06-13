@@ -2,7 +2,7 @@
 
 ![NPM Version](https://img.shields.io/npm/v/story-build)
 
-**Story.build** is an AI MCP toolkit that lets anyone manage IP projects on Story Protocol with ease, letting AI handle IP registration, license creation, purchase flows, and full web app generation. The entire process is streamlined and completed in minutes.
+**Story.build** is an AI MCP toolkit that lets anyone manage IP projects on Story Protocol with ease, letting AI handle IP registration, license creation, license token acquisition, derivative registration, royalty payments, and full web app generation . The entire process is streamlined and completed in minutes.
 
 - [NPM Registry](https://www.npmjs.com/package/story-build)
 - [Documentation](https://github.com/tamago-labs/story-build)
@@ -15,7 +15,7 @@ Traditional IP registration and licensing involves expensive legal processes, co
 
 ## Key Features
 
-We have 20+ MCP tools allow you to use AI for wallet operations, check balances, wrap and unwrap IP tokens, and manage IP projects as follows:
+We have 20+ MCP tools allow you to use AI likes Claude or Cursor.ai for wallet operations, check balances, wrap and unwrap IP tokens, and perform complex IP tasks as follows:
 
 ### **IP Asset Management**
 - **IP asset registration** Simply by paste URLs with automatic content parsing
