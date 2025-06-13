@@ -19,7 +19,7 @@ We have 17+ MCP tools allow you to use AI likes Claude or Cursor.ai for wallet o
 
 ### **IP Asset Management**
 - **IP asset registration** Simply by paste URLs with automatic content parsing
-- **Social media URL parsing** (Instagram, Twitter, ArtStation, Behance, YouTube)
+- **IP your social works** (Instagram, Twitter, ArtStation, Behance, YouTube)
 - **IPFS upload integration** for decentralized content storage via Pinata
 
 ### **License Management**
