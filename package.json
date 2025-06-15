@@ -1,6 +1,6 @@
 {
   "name": "story-build",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "MCP library for AI-assisted IP registration and licensing on Story Protocol",
   "main": "dist/index.js",
   "module": "./dist/index.mjs",
@@ -49,7 +49,7 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.10.2",
     "@story-protocol/core-sdk": "1.3.2",
-    "axios": "^1.9.0",
+    "axios": "^1.10.0",
     "dotenv": "^16.4.7",
     "multiformats": "^9.9.0",
     "pinata": "^2.3.0",
