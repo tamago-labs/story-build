@@ -5,7 +5,8 @@
 **Story.build** is an AI MCP toolkit that lets anyone manage IP projects on Story Protocol with ease, letting AI handle IP registration, license creation, license token acquisition, derivative registration, royalty payments, and full web app generation . The entire process is streamlined and completed in minutes.
 
 - [NPM Registry](https://www.npmjs.com/package/story-build)
-- [Documentation](https://github.com/tamago-labs/story-build)
+- [Presentation](https://github.com/tamago-labs/story-build/blob/main/Story.build%20-%20Story%20Hackathon.pdf)
+- [Video Demo](https://youtu.be/zgtQnyTnWk0)
 
 ## Overview
 
